@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Resume Feedback</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .no-blink {
+      user-select: text;
+      pointer-events: none;
+    }
+
+    .content-block h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-top: 1.25rem;
+      margin-bottom: 0.5rem;
+      color: #1f2937;
+    }
+
+    .content-block ul {
+      list-style: disc;
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+      color: #374151;
+    }
+
+    .content-block p {
+      margin-bottom: 0.5rem;
+      color: #374151;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .section {
+      background-color: #f3f4f6;
+      padding: 1.25rem;
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen p-8">
+  <div class="max-w-4xl mx-auto bg-white p-8 rounded-xl shadow-md space-y-8">
+    <h1 class="text-3xl font-bold text-center">Resume Review Results</h1>
+
+    <!-- Feedback Section -->
+    <div>
+      <h2 class="section-title">📝 Feedback</h2>
+      <div id="feedback" class="section content-block whitespace-pre-wrap no-blink">
+        {{ feedback | safe }}
+      </div>
+    </div>
+
+    <!-- Interview Questions Section -->
+    <div>
+      <h2 class="section-title">💬 Mock Interview Questions</h2>
+      <div id="questions" class="section content-block whitespace-pre-wrap no-blink">
+        {{ questions | safe }}
+      </div>
+    </div>
+
+    <a href="/" class="inline-block mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+      Analyze Another Resume
+    </a>
+  </div>
+</body>
+</html>

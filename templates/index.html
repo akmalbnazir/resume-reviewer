@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Resume Reviewer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .no-blink {
+      user-select: text;
+      pointer-events: none;
+    }
+
+    .spinner {
+      border: 2px solid #f3f3f3;
+      border-top: 2px solid white;
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+      animation: spin 0.6s linear infinite;
+      display: none;
+      margin-left: 8px;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-6">
+  <div class="bg-white p-8 rounded-xl shadow-md max-w-md w-full">
+    <h1 class="text-2xl font-bold text-center mb-6 no-blink">Upload Your Resume</h1>
+
+    <form method="POST" enctype="multipart/form-data" class="flex flex-col items-center space-y-4" onsubmit="showSpinner()">
+      
+      <!-- File Upload Button -->
+      <label class="relative cursor-pointer inline-block bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-2 px-6 rounded-full">
+        <span class="no-blink">Choose File</span>
+        <input id="resumeInput" type="file" name="resume" accept=".pdf,.docx" required class="hidden">
+      </label>
+
+      <!-- File Name Display -->
+      <p id="fileName" class="text-sm text-gray-600 no-blink text-center">No file chosen</p>
+
+      <!-- Analyze Button with Spinner -->
+      <button type="submit"
+        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded flex items-center justify-center relative">
+        <span class="no-blink">Analyze Resume</span>
+        <div id="spinner" class="spinner"></div>
+      </button>
+
+      <!-- Error Message -->
+      {% if error %}
+      <p class="text-red-500 text-sm text-center mt-2">{{ error }}</p>
+      {% endif %}
+    </form>
+  </div>
+
+  <script>
+    const input = document.getElementById('resumeInput');
+    const fileNameDisplay = document.getElementById('fileName');
+    const spinner = document.getElementById('spinner');
+
+    input.addEventListener('change', () => {
+      fileNameDisplay.textContent = input.files.length > 0 ? input.files[0].name : "No file chosen";
+    });
+
+    function showSpinner() {
+      spinner.style.display = 'inline-block';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+Flask
+python-docx
+pdfplumber
+openai
+python-dotenv
+markdown
